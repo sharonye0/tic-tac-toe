@@ -22,8 +22,16 @@
    text-align: center;
  }
 
+ button {
+   outline: none;
+   border: none;
+   cursor: pointer;
+   font-family: inherit;
+ }
+
  button:hover,
  button:focus {
    outline: none;
    border: none;
+   cursor: pointer;
  }
