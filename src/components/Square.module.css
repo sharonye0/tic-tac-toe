@@ -6,6 +6,10 @@
     border: none;
     background-color: #e0e0e0;
     margin: 1px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .square:first-child {
@@ -26,8 +30,6 @@
 
 .square:not(:disabled):hover, .square:focus {
     background-color: #cfcfcf;
-    cursor: pointer;
-    outline: none;
 }
 
 .square:disabled {
