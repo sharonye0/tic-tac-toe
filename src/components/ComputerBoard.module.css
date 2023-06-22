@@ -1,0 +1,76 @@
+.container {
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4em;
+}
+
+.info {
+    background-color: #6e6e6e;
+    border-radius: 12px;
+    padding: 1em 2.5em;
+}
+
+.info.winner {
+    background-color: #4bc05b;
+}
+
+.loser {
+    background-color: #f93d4d;
+}
+
+.info.tie {
+    background-color: #da5d5d;
+}
+
+.grid {
+    display: grid;
+    gap: 1px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.whichPlayerTurn {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.btnContainer {
+    display: flex;
+    gap: 2em;
+}
+
+.boardBtn {
+    font-size: 1.6rem;
+    border: none;
+    border-radius: 6px;
+    padding: .4em 1.2em;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.boardBtn:hover {
+    outline: none;
+}
+
+.boardBtn:focus {
+    outline: none;
+}
+
+.restart {
+    background-color: #04bdbd;
+}
+
+.restart:hover {
+    background-color: #04bdbdc7;
+}
+
+.exit {
+    background-color: #fc4a59;
+}
+
+.exit:hover {
+    background-color: #fc4a59c7;
+}

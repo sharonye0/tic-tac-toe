@@ -1,35 +1,21 @@
-import { useState } from 'react';
-import Board from './containers/Board';
-import StartingPage from './containers/StartingPage';
-
-type theGameInterface = {
-  landingPage: boolean,
-  vsComputer: boolean,
-  vsFriend: boolean
-}
+import { useContext } from "react";
+import ComputerBoard from "./components/ComputerBoard";
+import FriendBoard from "./components/FriendBoard";
+import StartingPage from "./components/StartingPage";
+import GameContext from "./gameData/game-context";
+import BoardDataProvider from "./gameData/BoardDataProvider";
 
 function App() {
-
-  const [gameInterface, setGameInterface] = useState<theGameInterface>({ landingPage: true, vsComputer:false, vsFriend: false });  
-
-  const playWithAIHandler = (): void => {
-      setGameInterface({ landingPage: false, vsComputer:true, vsFriend: false });
-  }
-  
-  const playWithAFriendHandler = (): void => {
-      setGameInterface({ landingPage: false, vsComputer:false, vsFriend: true });
-  }
-
-  const exitGameHandler = (): void => {
-    setGameInterface({ landingPage: true, vsComputer:false, vsFriend: false });
-  }
-
+  const gameData = useContext(GameContext);
   return (
     <>
-      {gameInterface.landingPage && <StartingPage onPlayWithFriend={playWithAFriendHandler} onPlayWithAI={playWithAIHandler}/>}
-      {(gameInterface.vsComputer || gameInterface.vsFriend) && <Board onExitGame={exitGameHandler}/>}
+      {gameData.gameInterface.landingPage && <StartingPage />}
+      <BoardDataProvider>
+        {gameData.gameInterface.vsComputer && <ComputerBoard />}
+        {gameData.gameInterface.vsFriend && <FriendBoard />}
+      </BoardDataProvider>
     </>
-  ); 
+  );
 }
 
 export default App;
