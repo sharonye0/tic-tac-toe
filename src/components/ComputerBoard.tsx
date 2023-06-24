@@ -2,6 +2,7 @@ import { useCallback, useContext, useEffect } from "react";
 import Square from "./boardComponents/Square";
 import styles from "./ComputerBoard.module.css";
 import BoardContext from "../gameData/board-context";
+import ExitAndReset from "./boardComponents/ExitAndReset";
 
 const THE_TIME_COMPUTER_TAKES_TO_PLAY_A_MOVE = 250; // In Milliseconds
 
@@ -27,8 +28,12 @@ const FriendBoard = () => {
         }
     }, [boardData, computerMove])
 
-    let content;
+    const humanClickedSquareHandler = (i: number) => {
+        boardData.setSquareValue(i);
+        boardData.switchPlayer("computer");
+    }
 
+    let content;
     if (boardData.winner === "X") { // human lose
         content = (
             <div className={`${styles.info} ${styles.loser}`}>
@@ -66,10 +71,7 @@ const FriendBoard = () => {
                     (_, i) => <Square
                         winner={boardData.winner}
                         key={i}
-                        onClick={() => {
-                            boardData.setSquareValue(i);
-                            boardData.switchPlayer("computer");
-                        }}
+                        onClick={() => humanClickedSquareHandler(i)}
                         value={boardData.squares[i]} />
                 )}
                 {boardData.player === "computer" && Array(9).fill(null).map(
@@ -80,16 +82,7 @@ const FriendBoard = () => {
                     />
                 )}
             </div>
-            <div className={styles.btnContainer}>
-                <button
-                    className={`${styles.boardBtn} ${styles.exit}`}
-                    onClick={() => boardData.returnToStartingPage()}
-                > Exit </button>
-                <button
-                    className={`${styles.boardBtn} ${styles.restart}`}
-                    onClick={boardData.reset}
-                > Restart </button>
-            </div>
+            <ExitAndReset />
         </main >
     );
 }
