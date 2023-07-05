@@ -15,7 +15,6 @@ function StartingPage() {
           <button onClick={gameData.playWithAFriendHandler}> vs a Friend </button>
         </div>
       </div>
-
     </main>
   )
 }
