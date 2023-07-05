@@ -1,21 +1,19 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 type Player = "X" | "O";
 type Square = "X" | "O" | null;
-type TheWinner = "X" | "O" | "Tie" | null;
+type MinimaxSquare = "X" | "O" | number;
+type TheWinner = "X" | "O" | "Tie" | null | number;
+type Move = { score: number, index: number };
 
 interface boardContext {
     squares: Array<Square>;
-    player: "human" | "computer";
-    currentHumanOrComputerPlayer: Player,
     currentPlayer: Player;
     winner: TheWinner;
     reset: () => void;
     returnToStartingPage: () => void;
     setSquareValue: (index: number | null) => void;
-    chooseASquareRandomly: () => number | null;
-    switchPlayer: (player: "human" | "computer") => void,
-    minimax: (newBoard: Array<Square>, player: Player) => number;
-    checkWinner: (squares: Array<Square>) => TheWinner;
+    setSquares: (newData: Array<Square>) => void;
+    checkWinner: (squares: Array<Square> | Array<MinimaxSquare>) => TheWinner;
     settingTheWinner: (theWinner: TheWinner) => void;
 }
 
@@ -31,4 +29,3 @@ interface gameContext {
     playWithAFriendHandler: () => void;
     exitGameHandler: () => void;
 }
-
