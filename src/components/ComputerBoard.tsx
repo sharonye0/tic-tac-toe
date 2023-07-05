@@ -26,7 +26,7 @@ const ComputerBoard = () => {
         setCurrentHumanOrComputerPlayer(currentHumanOrComputerPlayer === 'X' ? 'O' : 'X');
     }, [boardData, currentHumanOrComputerPlayer])
 
-    const minimax = useCallback((newBoard: Array<MinimaxSquare>, player: "X" | "O"): (Move | { score: number }) => {
+    const minimax = useCallback((newBoard: Array<MinimaxSquare>, player: "X" | "O"): any => {
         const availableSquares: any[] = newBoard.filter((square) => typeof square === "number");
 
         // 1. return value if terminal state is found (base case).
@@ -57,7 +57,7 @@ const ComputerBoard = () => {
             moves.push(move);
         })
 
-        let bestMove: number;
+        let bestMove = 0;
         // 4. evaluate returning values from each function call.
         if (player === "X") {
             let bestScore = -10000;
@@ -67,6 +67,8 @@ const ComputerBoard = () => {
                     bestMove = i;
                 }
             })
+            // 5. return the best move.
+            return moves[bestMove];
         } else if (player === "O") {
             let bestScore = 10000;
             moves.forEach((move, i) => {
@@ -75,11 +77,10 @@ const ComputerBoard = () => {
                     bestMove = i;
                 }
             });
+            // 5. return the best move.
+            return moves[bestMove];
         }
-
-        // 5. return the best move.
-        const bestSpot: Move = moves[bestMove];
-        return bestSpot;
+        return null;
     }, [boardData])
 
     const bestSpot = useCallback((): number | null => {
