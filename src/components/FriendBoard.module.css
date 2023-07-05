@@ -8,27 +8,8 @@
     gap: 4em;
 }
 
-.info {
-    background-color: #6e6e6e;
-    border-radius: 12px;
-    padding: 1em 2.5em;
-}
-
-.info.winner {
-    background-color: #4bc05b;
-}
-
-.info.tie {
-    background-color: #da5d5d;
-}
-
 .grid {
     display: grid;
     gap: 1px;
     grid-template-columns: repeat(3, 1fr);
-}
-
-.whichPlayerTurn {
-    font-size: 2rem;
-    margin: 0;
 }

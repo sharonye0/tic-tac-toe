@@ -3,8 +3,9 @@ import Square from "./boardComponents/Square";
 import styles from "./FriendBoard.module.css";
 import BoardContext from "../gameData/board-context";
 import ExitAndReset from "./boardComponents/ExitAndReset";
+import WinOrLoseGameResult from "./boardComponents/WinOrLoseGameResult";
 
-const ComputerBoard = () => {
+const FriendBoard = () => {
     const boardData = useContext(BoardContext);
 
     useEffect(() => {
@@ -12,29 +13,10 @@ const ComputerBoard = () => {
         boardData.settingTheWinner(theWinner);
     }, [boardData, boardData.squares])
 
-    let content = (
-        <div className={styles.info}>
-            <p className={styles.whichPlayerTurn}>{boardData.currentPlayer}, it's your turn</p>
-        </div>
-    )
-
-    if (boardData.winner === "O" || boardData.winner === "X")
-        content = (
-            <div className={`${styles.info} ${styles.winner}`}>
-                <p className={`${styles.whichPlayerTurn} ${styles.winner}`}>🎉 Congratulations {boardData.winner} 🎉</p>
-            </div>
-        )
-
-    else if (boardData.winner === "Tie")
-        content = (
-            <div className={`${styles.info} ${styles.tie}`}>
-                <p className={styles.whichPlayerTurn}>👎🏼 Damn, it's a Tie 👎🏼</p>
-            </div>
-        )
 
     return (
         <main className={styles.container}>
-            {content}
+            <WinOrLoseGameResult winner={boardData.winner} currentPlayer={boardData.currentPlayer} />
             <div className={styles.grid}>
                 {Array(9).fill(null).map(
                     (_, i) => <Square
@@ -49,4 +31,4 @@ const ComputerBoard = () => {
     );
 }
 
-export default ComputerBoard;
+export default FriendBoard;
