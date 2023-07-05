@@ -2,8 +2,10 @@ import { useContext } from "react";
 import styles from "./ExitAndReset.module.css";
 import BoardContext from "../../gameData/board-context";
 
-function ExitAndReset() {
+function ExitAndReset({ onReset }: any) {
     const boardData = useContext(BoardContext);
+
+
 
     return (
         <div className={styles.btnContainer}>
@@ -13,7 +15,10 @@ function ExitAndReset() {
             > Exit </button>
             <button
                 className={`${styles.boardBtn} ${styles.restart}`}
-                onClick={boardData.reset}
+                onClick={() => {
+                    boardData.reset()
+                    if (onReset) onReset()
+                }}
             > Restart </button>
         </div>
     )
